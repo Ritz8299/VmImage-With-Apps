@@ -1,0 +1,69 @@
+# List all the Publishers that contain VisualStudio (It's case sensitive)
+az vm image list-publishers --location eastus --output table --query "[?contains(name,'VisualStudio')]"
+
+# List all offers for the Publisher MicrosoftVisualStudio
+az vm image list-offers --location eastus --publisher MicrosoftVisualStudio  --output table
+
+# List all availables SKUs for the Publisher MicrosoftVisualStudio with the Offer VisualStudio
+az vm image list-skus --location eastus --publisher MicrosoftVisualStudio --offer VisualStudio --output table
+
+==================================================
+
+The ARM Template - deploy the VM
+
+# First, we need a Resource Group
+az group create --name VMImage-VM-App --location eastus
+
+# Validate the script
+
+az group deployment validate --resource-group VMImage-VM-App --template-file /home/ritesh/GoldenImage.json
+
+
+#Finally deploy. This script should take between 5 to 10 minutes
+az group deployment create --name VmImageDemo --resource-group VMImage-VM-App --template-file /home/ritesh/GoldenImage.json --verbose
+========================================================
+
+
+# First, we need a Resource Group
+az group create --name VMImage --location eastus
+
+# Validate the script
+
+az group deployment validate --resource-group VmImage --template-file /home/ritesh/Vmimage.json
+
+
+#Finally deploy. This script should take between 5 to 10 minutes
+az group deployment create --name VmImageDemo --resource-group VMImage --template-file /home/ritesh/Vmimage.json --verbose
+
+
+
+
+$resourceGroupName = Read-Host -Prompt "Enter the Resource Group name"
+$location = Read-Host -Prompt "Enter the location (i.e. centralus)"
+
+New-AzResourceGroup -Name VmImageDemo -Location $location
+New-AzResourceGroupDeployment -ResourceGroupName VmImageDemo -TemplateFile /home/ritesh/VmImage2.json
+
+
+
+
+
+New-AzResourceGroupDeployment -ResourceGroupName VmImageDemo -TemplateFile D:\Prep\VmImage\Vmimgae.json
+
+
+-------------------------
+
+C:\Users\vrite\source\repos
+
+===================================
+
+ 	ARM template
+
+•	Bypass the policy
+set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+•	To deploy:
+./deploy.ps1 -subscriptionId 8802d2a8-f53a-4287-84ca-12f4c9e60698  -resourceGroupName EQDEMO2 -deploymentName EQDEMO
+•	To get the details of a issue:
+Get-AzureRMLog -CorrelationId 6f146dd3-64b5-4764-bd7a-b4ae507f4c7e -DetailedOutput
+
+
