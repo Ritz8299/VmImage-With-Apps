@@ -5,3 +5,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 choco install visualstudiocode -y
 choco install git -y 
 choco install nodejs-lts  -y
+choco install visualstudio2017enterprise -y
+choco install postman -y
+
+# End Script
